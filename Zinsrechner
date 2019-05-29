@@ -1,0 +1,74 @@
+package test2;
+
+import java.util.Scanner;
+
+/**
+ *
+ * @author Thomas
+ */
+public class Test2 {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+         double p = 0.0;
+        double r = 0.0;
+        int t = 0;
+        int aa = 0;
+        double profit = 0.0;
+        // Variablen festlegen
+        String go = "ja";
+        String keepGoing ="ja";
+        Scanner scan = new Scanner (System.in);
+        
+        while (go.equals("ja")){
+            System.out.println("Startkapital eingeben");
+            p = scan.nextDouble();
+            
+            System.out.println("Jährliche Einzahlung eingeben");
+            aa = scan.nextInt();
+            
+            System.out.println("Zinsrate eingeben");
+            r = scan.nextDouble();
+            
+            System.out.println("Zeitraum in Jahren eingeben");
+            t = scan.nextInt();
+            //Sparkonditionen erfragen
+            
+            double realRate = r * .01;
+            //Usereingabe zu Prozentrechnung umstellen
+            
+            double  total = p * (1+ realRate);
+            //Guthaben mit Zinsen addieren
+            System.out.println("Gesamtsumme ist " + total);
+            
+            int i = 1;
+            
+            while (i < t){
+                total = (total + aa) * (1 + realRate);
+                i = i + 1;
+                System.out.println("Gesatmtsumme ist " + total);
+            }
+            //Wiederholung der Rechnung bis Zeitraum abgeschlossen ist
+            
+            i = i - 1;
+            profit = total - (p + (aa * i));
+            System.out.println("Profit liegt bei " + profit);
+            //Abzug des eingezahlten Geldes
+            
+            System.out.println("Um fort zu fahren, geben Sie bitte \"ja\" ein. Um das Programm zu beenden, schreiben Sie etwas anderes.");
+            keepGoing = scan.next();
+            //Ende des Programmes erfragen
+            
+            if (keepGoing.equals ("ja")){
+                go = "ja";
+            }
+            else{
+                go = "nein";
+            }
+            
+        }
+    }
+    
+}
